@@ -1,0 +1,44 @@
+var stack = function(){
+  this.count = 0;
+  this.storage = {};
+  
+  // push method
+  this.push = function(value){
+    this.storage[this.count] = value;
+    this.count++;
+  }
+  
+  // pop method
+  this.pop = function(){
+    if (this.count === 0){
+      return undefined;
+    }
+    
+    this.count--;
+    var result = this.storage[this.count];
+    delete this.storage[this.count];
+    // now return the deleted value stored in result variable
+    return result;
+  }
+  
+  // peek method
+  this.peek = function(){
+    return this.storage[this.count-1];
+    // here, only display, no need to delete as in pop 
+  }
+  this.length = function(){
+    return this.count;
+  }
+}
+
+
+// now test the implementation
+mystack = new stack();
+console.log(mystack.length());
+mystack.push(123);
+mystack.push("sure");
+console.log(mystack.length());
+mystack.push("xxx");
+console.log(mystack.length());
+console.log(mystack.pop());
+console.log(mystack.peep());
